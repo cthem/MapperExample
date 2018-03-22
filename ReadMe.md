@@ -70,3 +70,5 @@ public interface EntityDtoMapper {
 As you probably have noticed in the above code, I have used the @Mapping annotation when variable names in an entity and dto have different names. After having created this interface, I do not have to implemented. I simply use Maven clean install and the implementation is automatically created in the target folder.
 
 Please note that, since entities and dto have references to each other (e.g. student has reference to school and school to student), we cannot add @Mapping annotation to both functions. If we do so, a StackOverflow exception will be thrown. Since I have not added @Mapping annotation to Student functions, the produced implementation will not set the fields of coursesDto and schoolDto. On the contrary, the field studentDto in SchoolDto and CourseDto will be set normally.
+
+In order to overcome above issue, we could create separate mappers, one for each entity.
