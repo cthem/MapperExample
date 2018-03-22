@@ -10,6 +10,7 @@
 	<version>1.1.0.Final</version> 
 </dependency>
 ```
+
 * Add below plugin to pom.xml:
 ```
 <plugin>
@@ -29,6 +30,8 @@
     </configuration>
 </plugin>
 ```
+
+* Also I have added the MapStruct plugin for Eclipse from Eclipse MarketPlace
 
 ## Explanation
 
