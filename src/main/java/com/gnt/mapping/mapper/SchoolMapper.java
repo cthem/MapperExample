@@ -8,7 +8,7 @@ import com.gnt.mapping.dto.StudentDto;
 import com.gnt.mapping.entities.School;
 import com.gnt.mapping.entities.Student;
 
-@Mapper(componentModel = "sdi")
+@Mapper(componentModel = "cdi")
 public interface SchoolMapper {
 	StudentDto convertStudentToStudentDto(Student student);
 	Student convertStudentDtoToStudent(StudentDto studentDto);

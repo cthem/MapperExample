@@ -11,7 +11,7 @@ import com.gnt.mapping.entities.Course;
 import com.gnt.mapping.entities.School;
 import com.gnt.mapping.entities.Student;
 
-@Mapper(componentModel = "sdi")
+@Mapper(componentModel = "cdi")
 public interface StudentMapper {
 	@Mappings({ 
 		@Mapping(target = "schoolDto", source = "school"),

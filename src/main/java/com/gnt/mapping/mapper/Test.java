@@ -60,6 +60,6 @@ public class Test {
 		System.out.println(studentDto.getSchoolDto().getName() + " " + student.getSchool().getName());
 		
 		School school2= schoolMapper.convertSchoolDtoToSchool(schoolDto);
-		System.out.println(school2.getStudent().getName());
+		System.out.println(school2.getStudent().getName() + " " + schoolDto.getStudentDto().getName());
 	}
 }
