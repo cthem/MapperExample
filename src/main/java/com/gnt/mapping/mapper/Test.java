@@ -13,7 +13,11 @@ import com.gnt.mapping.entities.School;
 import com.gnt.mapping.entities.Student;
 
 public class Test {
-	private static EntityDtoMapper mapper = Mappers.getMapper(EntityDtoMapper.class);
+//	private static EntityDtoMapper mapper = Mappers.getMapper(EntityDtoMapper.class);
+	private static StudentMapper studentMapper = Mappers.getMapper(StudentMapper.class);
+	private static SchoolMapper schoolMapper = Mappers.getMapper(SchoolMapper.class);
+	private static CourseMapper courseMapper = Mappers.getMapper(CourseMapper.class);
+	
 	public static void main(String[] args) {
 		Student student = new Student();
 		student.setName("George");
@@ -42,18 +46,20 @@ public class Test {
 		school.setStudent(student);
 		student.setSchool(school);
 		
-		CourseDto courseDto1 = mapper.convertCourseToCourseDto(course1);
-//		CourseDto courseDto2 = mapper.convertCourseToCourseDto(course2);
+		CourseDto courseDto1 = courseMapper.convertCourseToCourseDto(course1);
+		CourseDto courseDto2 = courseMapper.convertCourseToCourseDto(course2);
 		System.out.println(courseDto1.getName() + " " + course1.getName());
+		System.out.println(courseDto2.getName() + " " + course2.getName());
 		
-		StudentDto studentDto = mapper.convertStudentToStudentDto(student);
+		StudentDto studentDto = studentMapper.convertStudentToStudentDto(student);
 		System.out.println(studentDto.getName() + " " + student.getName());
-		SchoolDto schoolDto = mapper.convertSchoolToSchoolDto(school);
-		System.out.println(schoolDto.getStudentDto().getName());
-//		System.out.println(studentDto.getCoursesDto().get(0).getName() + " " + student.getCourses().get(0).getName());
-//		System.out.println(studentDto.getSchoolDto().getName() + " " + student.getSchool().getName());
 		
-		School school2= mapper.convertSchoolDtoToSchool(schoolDto);
+		SchoolDto schoolDto = schoolMapper.convertSchoolToSchoolDto(school);
+		System.out.println(schoolDto.getStudentDto().getName());
+		System.out.println(studentDto.getCoursesDto().get(0).getName() + " " + student.getCourses().get(0).getName());
+		System.out.println(studentDto.getSchoolDto().getName() + " " + student.getSchool().getName());
+		
+		School school2= schoolMapper.convertSchoolDtoToSchool(schoolDto);
 		System.out.println(school2.getStudent().getName());
 	}
 }

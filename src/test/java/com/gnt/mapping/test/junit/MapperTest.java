@@ -14,11 +14,16 @@ import com.gnt.mapping.dto.StudentDto;
 import com.gnt.mapping.entities.Course;
 import com.gnt.mapping.entities.School;
 import com.gnt.mapping.entities.Student;
-import com.gnt.mapping.mapper.EntityDtoMapper;
+import com.gnt.mapping.mapper.CourseMapper;
+import com.gnt.mapping.mapper.SchoolMapper;
+import com.gnt.mapping.mapper.StudentMapper;
 
 public class MapperTest {
-	private EntityDtoMapper mapper = Mappers.getMapper(EntityDtoMapper.class);
-
+//	private EntityDtoMapper mapper = Mappers.getMapper(EntityDtoMapper.class);
+	private StudentMapper studentMapper = Mappers.getMapper(StudentMapper.class);
+	private SchoolMapper schoolMapper = Mappers.getMapper(SchoolMapper.class);
+	private CourseMapper courseMapper = Mappers.getMapper(CourseMapper.class);
+	
 	@Test
 	public void test() {
 		Student student = new Student();
@@ -48,26 +53,20 @@ public class MapperTest {
 		school.setStudent(student);
 		student.setSchool(school);
 
-		CourseDto courseDto1 = mapper.convertCourseToCourseDto(course1);
-		CourseDto courseDto2 = mapper.convertCourseToCourseDto(course2);
+		CourseDto courseDto1 = courseMapper.convertCourseToCourseDto(course1);
+		CourseDto courseDto2 = courseMapper.convertCourseToCourseDto(course2);
 		assertEquals(courseDto1.getName(), course1.getName());
 		assertEquals(courseDto2.getName(), course2.getName());
 		assertEquals(courseDto1.getStudentDto().getName(), course1.getStudent().getName());
 		assertEquals(courseDto2.getStudentDto().getName(), course2.getStudent().getName());
 
-		SchoolDto schoolDto = mapper.convertSchoolToSchoolDto(school);
+		SchoolDto schoolDto = schoolMapper.convertSchoolToSchoolDto(school);
 		assertEquals(schoolDto.getName(), school.getName());
 		assertEquals(schoolDto.getStudentDto().getName(), school.getStudent().getName());
 
-		StudentDto studentDto = mapper.convertStudentToStudentDto(student);
+		StudentDto studentDto = studentMapper.convertStudentToStudentDto(student);
 		assertEquals(studentDto.getName(), student.getName());
-		studentDto.setSchoolDto(schoolDto);
 		assertEquals(studentDto.getSchoolDto().getName(), student.getSchool().getName());
-
-		List<CourseDto> coursesDto = new ArrayList<>();
-		coursesDto.add(courseDto1);
-		coursesDto.add(courseDto2);
-		studentDto.setCoursesDto(coursesDto);
 		assertEquals(studentDto.getCoursesDto().get(0).getName(), student.getCourses().get(0).getName());
 	}
 
