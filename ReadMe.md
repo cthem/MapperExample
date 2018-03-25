@@ -13,22 +13,44 @@
 
 * Add below plugin to pom.xml:
 ```
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-compiler-plugin</artifactId>
-    <version>3.5.1</version>
-    <configuration>
-        <source>1.8</source>
-    <target>1.8</target>
-        <annotationProcessorPaths>
-            <path>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct-processor</artifactId>
-                <version>1.1.0.Final</version>
-            </path>
-        </annotationProcessorPaths>
-    </configuration>
-</plugin>
+</plugins>
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<version>3.5.1</version>
+		<configuration>
+			<source>1.8</source>
+			<target>1.8</target>
+			<annotationProcessorPaths>
+				<path>
+					<groupId>org.mapstruct</groupId>
+					<artifactId>mapstruct-processor</artifactId>
+					<version>1.1.0.Final</version>
+				</path>
+			</annotationProcessorPaths>
+		</configuration>
+	</plugin>
+	<plugin>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>build-helper-maven-plugin</artifactId>
+		<executions>
+		    <execution>
+			<id>add-source</id>
+			<phase>generate-sources</phase>
+			<goals>
+			    <goal>add-source</goal>
+			</goals>
+			<configuration>
+			    <sources>
+				<source>src/main/generated</source>
+				<source>${project.build.directory}/generated-sources/</source>
+			    </sources>
+			</configuration>
+		    </execution>
+		</executions>
+	</plugin>
+</plugins>
+
 ```
 
 * Also I have added the MapStruct plugin for Eclipse from Eclipse MarketPlace
